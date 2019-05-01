@@ -15,8 +15,8 @@ echo "Your RCON password is set to: ${RCON_PASSWORD}"
 echo -e "----------------------------------------------\n"
 
 
-if [ -z "${LICENCE_KEY}" ]; then
-  echo "Licence key not found in environment, please create one at https://keymaster.fivem.net!"
+if [ -z "${LICENSE_KEY}" ]; then
+  echo "License key not found in environment, please create one at https://keymaster.fivem.net!"
   exit 1
 fi
 
@@ -24,5 +24,5 @@ fi
 exec /opt/cfx-server/FXServer \
        +set citizen_dir /opt/cfx-server/citizen/ \
        +exec /config/server.cfg $@ \
-       +set sv_licenseKey ${LICENCE_KEY}
+       +set sv_licenseKey ${LICENSE_KEY}
 
