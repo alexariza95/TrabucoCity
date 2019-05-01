@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  fivem:
+    build:
+      context: .
+    volumes:
+      - ./resources:/config/resources
+      - ./server.cfg:/server.cfg
+    ports:
+      - 30120:30120
+      - 30120:30120/udp
+    restart: "on-failure"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+      - ./.env.local
+  db:
+    image: postgres:10
+    restart: "on-failure"
+    environment:
+      - POSTGRES_USER=city
+    env_file:
+      - ./.env
+      - ./.env.local
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
+    driver: local
